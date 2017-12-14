@@ -4,10 +4,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
 
-/**
- * @author Dieter Holz
- */
-public class DropDownChooser extends VBox {
+
+class DropDownChooser extends VBox {
     private static final String FONTS_CSS = "fonts.css";
     private static final String STYLE_CSS = "dropDownChooser.css";
 
@@ -15,7 +13,7 @@ public class DropDownChooser extends VBox {
 
     private Label tobeReplacedLabel;
 
-    public DropDownChooser(BusinessControl businessControl) {
+    DropDownChooser(BusinessControl businessControl) {
         this.businessControl = businessControl;
         initializeSelf();
         initializeParts();

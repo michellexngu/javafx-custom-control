@@ -20,10 +20,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Popup;
 import javafx.util.Duration;
 
-/**
- * @author Dieter Holz
- */
-public class BusinessSkin extends SkinBase<BusinessControl> {
+class BusinessSkin extends SkinBase<BusinessControl> {
     private static final int IMG_SIZE   = 12;
     private static final int IMG_OFFSET = 4;
 
@@ -39,7 +36,7 @@ public class BusinessSkin extends SkinBase<BusinessControl> {
 
         State(final String text, final String file) {
             this.text = text;
-            String url = BusinessSkin.class.getResource("icons/" + file).toExternalForm();
+            String url = BusinessSkin.class.getResource("/icons/" + file).toExternalForm();
             this.imageView = new ImageView(new Image(url,
                                                      IMG_SIZE, IMG_SIZE,
                                                      true, false));
@@ -61,7 +58,7 @@ public class BusinessSkin extends SkinBase<BusinessControl> {
     private Animation      invalidInputAnimation;
     private FadeTransition fadeOutValidIconAnimation;
 
-    public BusinessSkin(BusinessControl control) {
+    BusinessSkin(BusinessControl control) {
         super(control);
         initializeSelf();
         initializeParts();
@@ -225,6 +222,4 @@ public class BusinessSkin extends SkinBase<BusinessControl> {
         }
         invalidInputAnimation.play();
     }
-
-
 }

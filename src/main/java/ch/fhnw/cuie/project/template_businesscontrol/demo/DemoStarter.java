@@ -5,14 +5,12 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
-/**
- * @author Dieter Holz
- */
 public class DemoStarter extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Region rootPanel = new DemoPane();
+        PresentationModel model = new PresentationModel();
+        Region rootPanel = new DemoPane(model);
 
         Scene scene = new Scene(rootPanel);
 

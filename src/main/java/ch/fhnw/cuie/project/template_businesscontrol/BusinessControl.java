@@ -12,9 +12,6 @@ import javafx.css.PseudoClass;
 import javafx.scene.control.Control;
 import javafx.scene.control.Skin;
 
-/**
- * @author Dieter Holz
- */
 public class BusinessControl extends Control {
     static final String FORMATTED_INTEGER_PATTERN = "%,d";
 

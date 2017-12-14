@@ -9,8 +9,8 @@
 }
 
 .simpleControl .display {
-    -fx-font-family: 'DS-Digital';
-    -fx-font-size: 32;
+    -fx-font-family: 'Lato Light';
+    -fx-font-size: 24;
     -fx-fill: derive(-base-color, 95%);
 }
 

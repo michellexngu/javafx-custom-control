@@ -1,8 +1,7 @@
 package ch.fhnw.cuie.project.template_simplecontrol.demo;
 
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.geometry.Insets;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.BorderPane;
@@ -10,21 +9,19 @@ import javafx.scene.layout.VBox;
 
 import ch.fhnw.cuie.project.template_simplecontrol.SimpleControl;
 
-/**
- * @author Dieter Holz
- */
-public class DemoPane extends BorderPane {
+class DemoPane extends BorderPane {
+
+    private final PresentationModel pm;
 
     // declare the custom control
     private SimpleControl cc;
 
-    // Placeholders for properties of the application's PresentationModel
-    private final DoubleProperty pmValue = new SimpleDoubleProperty();
-
     // all controls
-    private Slider slider;
+    private Slider      slider;
+    private ColorPicker colorPicker;
 
-    public DemoPane() {
+    DemoPane(PresentationModel pm) {
+        this.pm = pm;
         initializeControls();
         layoutControls();
         setupBindings();
@@ -37,11 +34,13 @@ public class DemoPane extends BorderPane {
 
         slider = new Slider();
         slider.setShowTickLabels(true);
+
+        colorPicker = new ColorPicker();
     }
 
     private void layoutControls() {
         VBox controlPane = new VBox(new Label("SimpleControl Properties"),
-                                    slider);
+                                    slider, colorPicker);
         controlPane.setPadding(new Insets(0, 50, 0, 50));
         controlPane.setSpacing(10);
 
@@ -50,9 +49,12 @@ public class DemoPane extends BorderPane {
     }
 
     private void setupBindings() {
-        slider.valueProperty().bindBidirectional(pmValue);
+        slider.valueProperty().bindBidirectional(pm.pmValueProperty());
+        colorPicker.valueProperty().bindBidirectional(pm.baseColorProperty());
 
-        cc.valueProperty().bindBidirectional(pmValue);
+
+        cc.valueProperty().bindBidirectional(pm.pmValueProperty());
+        cc.baseColorProperty().bindBidirectional(pm.baseColorProperty());
     }
 
 }

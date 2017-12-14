@@ -1,13 +1,21 @@
 package ch.fhnw.cuie.project.template_simplecontrol;
 
+import java.util.List;
+
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.css.CssMetaData;
+import javafx.css.SimpleStyleableObjectProperty;
+import javafx.css.Styleable;
+import javafx.css.StyleableObjectProperty;
+import javafx.css.StyleablePropertyFactory;
 import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
@@ -15,6 +23,14 @@ import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextBoundsType;
 
 public class SimpleControl extends Region {
+    // needed for StyleableProperties
+    private static final StyleablePropertyFactory<SimpleControl> FACTORY = new StyleablePropertyFactory<>(Region.getClassCssMetaData());
+
+    @Override
+    public List<CssMetaData<? extends Styleable, ?>> getCssMetaData() {
+        return FACTORY.getCssMetaData();
+    }
+
     private static final double ARTBOARD_WIDTH  = 100;
     private static final double ARTBOARD_HEIGHT = 100;
 
@@ -31,6 +47,18 @@ public class SimpleControl extends Region {
 
     // Todo: declare all Properties
     private final DoubleProperty value = new SimpleDoubleProperty();
+
+    //Todo: declare all CSS stylable properties
+    private static final CssMetaData<SimpleControl, Color> BASE_COLOR_META_DATA = FACTORY.createColorCssMetaData("-base-color", s -> s.baseColor);
+
+    private final StyleableObjectProperty<Color> baseColor = new SimpleStyleableObjectProperty<Color>(BASE_COLOR_META_DATA, this, "baseColor") {
+        @Override
+        protected void invalidated() {
+            setStyle(getCssMetaData().getProperty() + ": " + colorToCss(getBaseColor()) + ";");
+            applyCss();
+        }
+    };
+
 
     // needed for resizing
     private Pane drawingPane;
@@ -110,10 +138,29 @@ public class SimpleControl extends Region {
         double scalingFactor = width / ARTBOARD_WIDTH;
 
         if (availableWidth > 0 && availableHeight > 0) {
-            drawingPane.relocate((getWidth() - ARTBOARD_WIDTH) * 0.5, (getHeight() - ARTBOARD_HEIGHT) * 0.5);
+            relocateCentered();
             drawingPane.setScaleX(scalingFactor);
             drawingPane.setScaleY(scalingFactor);
         }
+    }
+
+    private void relocateCentered() {
+        drawingPane.relocate((getWidth() - ARTBOARD_WIDTH) * 0.5, (getHeight() - ARTBOARD_HEIGHT) * 0.5);
+    }
+
+    private void relocateCenterBottom(double scaleY, double paddingBottom) {
+        double visualHeight = ARTBOARD_HEIGHT * scaleY;
+        double visualSpace  = getHeight() - visualHeight;
+        double y            = visualSpace + (visualHeight - ARTBOARD_HEIGHT) * 0.5 - paddingBottom;
+
+        drawingPane.relocate((getWidth() - ARTBOARD_WIDTH) * 0.5, y);
+    }
+
+    private void relocateCenterTop(double scaleY, double paddingTop) {
+        double visualHeight = ARTBOARD_HEIGHT * scaleY;
+        double y            = (visualHeight - ARTBOARD_HEIGHT) * 0.5 + paddingTop;
+
+        drawingPane.relocate((getWidth() - ARTBOARD_WIDTH) * 0.5, y);
     }
 
     // some handy functions
@@ -124,6 +171,16 @@ public class SimpleControl extends Region {
 
     private double valueToPercentage(double value, double minValue, double maxValue) {
         return (value - minValue) / (maxValue - minValue);
+    }
+
+    private double valueToAngle(double value, double minValue, double maxValue) {
+        return percentageToAngle(valueToPercentage(value, minValue, maxValue));
+    }
+
+    private double mousePositionToValue(double mouseX, double mouseY, double cx, double cy, double minValue, double maxValue){
+        double percentage = angleToPercentage(angle(cx, cy, mouseX, mouseY));
+
+        return percentageToValue(percentage, minValue, maxValue);
     }
 
     private double angleToPercentage(double angle){
@@ -191,6 +248,11 @@ public class SimpleControl extends Region {
         return group;
     }
 
+    private String colorToCss(final Color color) {
+  		return color.toString().replace("0x", "#");
+  	}
+
+
     // compute sizes
 
     @Override
@@ -237,5 +299,17 @@ public class SimpleControl extends Region {
 
     public void setValue(double value) {
         this.value.set(value);
+    }
+
+    public Color getBaseColor() {
+        return baseColor.get();
+    }
+
+    public StyleableObjectProperty<Color> baseColorProperty() {
+        return baseColor;
+    }
+
+    public void setBaseColor(Color baseColor) {
+        this.baseColor.set(baseColor);
     }
 }

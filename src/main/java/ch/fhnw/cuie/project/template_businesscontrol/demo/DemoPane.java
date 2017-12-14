@@ -16,10 +16,7 @@ import javafx.scene.layout.VBox;
 
 import ch.fhnw.cuie.project.template_businesscontrol.BusinessControl;
 
-/**
- * @author Dieter Holz
- */
-public class DemoPane extends BorderPane {
+class DemoPane extends BorderPane {
     private BusinessControl businessControl;
 
     private Slider ageSlider;
@@ -28,13 +25,11 @@ public class DemoPane extends BorderPane {
     private CheckBox  mandatoryBox;
     private TextField labelField;
 
-    // the value Property that needs to be set by the BusinessControl
-    private final IntegerProperty age      = new SimpleIntegerProperty(42);
-    private final StringProperty  ageLabel = new SimpleStringProperty("Age");
-    private final BooleanProperty readOnly = new SimpleBooleanProperty(false);
-    private final BooleanProperty mandatory = new SimpleBooleanProperty(true);
+    private PresentationModel model;
 
-    public DemoPane() {
+    DemoPane(PresentationModel model) {
+        this.model = model;
+
         initializeControls();
         layoutControls();
         setupValueChangeListeners();
@@ -73,15 +68,15 @@ public class DemoPane extends BorderPane {
     }
 
     private void setupBindings() {
-        ageSlider.valueProperty().bindBidirectional(age);
-        labelField.textProperty().bindBidirectional(ageLabel);
-        readOnlyBox.selectedProperty().bindBidirectional(readOnly);
-        mandatoryBox.selectedProperty().bindBidirectional(mandatory);
+        ageSlider.valueProperty()      .bindBidirectional(model.ageProperty());
+        labelField.textProperty()      .bindBidirectional(model.age_LabelProperty());
+        readOnlyBox.selectedProperty() .bindBidirectional(model.age_readOnlyProperty());
+        mandatoryBox.selectedProperty().bindBidirectional(model.age_mandatoryProperty());
 
-        businessControl.valueProperty().bindBidirectional(age);
-        businessControl.labelProperty().bind(ageLabel);
-        businessControl.readOnlyProperty().bind(readOnly);
-        businessControl.mandatoryProperty().bind(mandatory);
+        businessControl.valueProperty()    .bindBidirectional(model.ageProperty());
+        businessControl.labelProperty()    .bind(model.age_LabelProperty());
+        businessControl.readOnlyProperty() .bind(model.age_readOnlyProperty());
+        businessControl.mandatoryProperty().bind(model.age_mandatoryProperty());
     }
 
 }

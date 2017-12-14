@@ -1,4 +1,4 @@
-# CUIE Projekt
+# CUIE Abschlussprojekt
 
 ## Custom Control für ElectricCarsFX
 
@@ -9,21 +9,21 @@ Entwerfen und implementieren Sie ein Custom Control für das OOP2-Projekt 'Elect
 effiziente Eingabemöglichkeit für einen der Werte.
  - Falls ihr Custom Control ein _'einfaches, interaktives Anzeigeelement'_ ist, verwenden Sie bei der Implementierung die Struktur 
  wie im package `ch.fhnw.cuie.project.template_simplecontrol`.
- - Falls ihr Custom Control ein _'Business Control'_ ist, verwenden Sie bei der Implementierung die Struktur 
-  wie im package `ch.fhnw.cuie.project.template_businesscontrol`.
+ - Falls ihr Custom Control ein _'Business Control'_ ist, das z.B. eines der `TextFields` ersetzen soll, 
+ verwenden Sie bei der Implementierung die Struktur wie im package `ch.fhnw.cuie.project.template_businesscontrol`.
 
 ## Bearbeitet von
  - Vorname, Nachname
  
-## Integriert in diese OOP2-Projekte
+## Integriert in die OOP2-Projekte von
 - _**Ergänzen Sie hier welche OOP2-Teams Ihr Custom Control erfolgreich integriert haben.**_
 
  
 ## Präsentation
-- Mittwoch, 10.1.2018, 18:00 bis 18:45 Uhr, Raum 5.0H02
+- **Mittwoch, 10.1.2018**, 18:00 bis 18:45 Uhr, Raum 5.0H02
 
 - Die Custom Controls werden der OOP2-Klasse im Rahmen einer **Poster-Session** präsentiert.
- - Die Postersession startet mit einer Kurzpräsentation (1 bis 2 Minuten) aller Custom-Controls
+ - Die Postersession startet mit einer Kurzpräsentation (1 bis 2 Minuten) aller Custom-Controls.
  - Danach werden die Custom-Controls gleichzeitig ausgestellt und Gelegenheit gegeben auf Detailfragen einzugehen.
 
 - Erarbeiten Sie eine geeignete Präsentationsform, so dass das Interesse möglichst vieler OOP2-Teams 
@@ -34,7 +34,7 @@ in die jeweiligen OOP2-Projekte zu integrieren. Dies ist eine Gemeinschafts-Aufg
 
 
 ## Abgabe
-- Freitag, 12.1.2017, 20:42 Uhr
+- **Freitag, 12.1.2017**, 20:42 Uhr
 
 - Die Abgabe erfolgt durch einen "Push" auf den Master-Branch Ihres GitHub-Repositories.
 
@@ -60,13 +60,13 @@ wird zum Beispiel als passive Teilnahme gewertet.
  - Tragen Sie die Namen der OOP2-Teilnehmer ein in dessen OOP2-Projekte ihr Custom-Control erfolgreich intergriert wurde.
  
  - Es wird empfohlen das Projekt in 2-er Teams zu bearbeiten. 
-    - Es wird erwartet, dass die Lösung gemeinsam erarbeitet und implementiert wird (Stichwort 'Pair-Programming').
+   - Es wird erwartet, dass die Lösung gemeinsam erarbeitet und implementiert wird (Stichwort 'Pair-Programming').
  
  - Falls Sie das Projekt zu zweit bearbeiten:
-    - tragen Sie beide Namen unter "Bearbeitet von" ein
-    - arbeiten Sie ausschliesslich in einem Repository
-    - falls sie beide Zugang zu diesem Repository wollen: tragen Sie die zweite Person als "Collaborator" ein (auf GitHub unter "Settings - > Collaborators & teams")
-    - löschen Sie das nicht benötigte Repository (auf GitHub unter "Settings")
+   - tragen Sie beide Namen unter "Bearbeitet von" ein
+   - arbeiten Sie ausschliesslich in einem Repository
+   - falls sie beide Zugang zu diesem Repository wollen: tragen Sie die zweite Person als "Collaborator" ein (auf GitHub unter "Settings - > Collaborators & teams")
+   - löschen Sie das nicht benötigte Repository (auf GitHub unter "Settings")
   
   - Ausdrücklich erlaubt und erwünscht ist, dass Sie sich gegebenenfalls Hilfe holen.
   Das Programmierzentrum ist geöffnet und Nachfragen werden zum Beispiel über den im Repository integrierten 

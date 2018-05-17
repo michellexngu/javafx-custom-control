@@ -43,7 +43,7 @@ class BusinessSkin extends SkinBase<BusinessControl> {
         }
     }
 
-    private static final String FONTS_CSS = "fonts.css";
+    private static final String FONTS_CSS = "/fonts/fonts.css";
     private static final String STYLE_CSS = "style.css";
 
     // all parts
@@ -79,15 +79,15 @@ class BusinessSkin extends SkinBase<BusinessControl> {
 
     private void initializeParts() {
         editableNode = new TextField();
-        editableNode.getStyleClass().add("editableNode");
+        editableNode.getStyleClass().add("editable-node");
 
         readOnlyNode = new Label();
-        readOnlyNode.getStyleClass().add("readOnlyNode");
+        readOnlyNode.getStyleClass().add("read-only-node");
 
         State.VALID.imageView.setOpacity(0.0);
 
         chooserButton = new Button(ANGLE_DOWN);
-        chooserButton.getStyleClass().add("chooserButton");
+        chooserButton.getStyleClass().add("chooser-button");
 
         dropDownChooser = new DropDownChooser(getSkinnable());
 
@@ -95,7 +95,7 @@ class BusinessSkin extends SkinBase<BusinessControl> {
         popup.getContent().addAll(dropDownChooser);
 
         drawingPane = new StackPane();
-        drawingPane.getStyleClass().add("drawingPane");
+        drawingPane.getStyleClass().add("drawing-pane");
     }
 
     private void layoutParts() {

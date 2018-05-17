@@ -3,7 +3,14 @@ version '0.1-SNAPSHOT'
 
 apply plugin: 'java'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 9
+targetCompatibility = 9
+
+compileJava.options.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
 
 sourceSets {
     main {
@@ -13,12 +20,21 @@ sourceSets {
     }
 }
 
-repositories {
-    mavenCentral()
+dependencies {
+	testCompile("org.junit.jupiter:junit-jupiter-api:5.2.0")
+	testRuntime("org.junit.jupiter:junit-jupiter-engine:5.2.0")
 }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+test {
+	useJUnitPlatform()
+
+	testLogging {
+		events "passed", "skipped", "failed"
+	}
+
+	reports {
+		html.enabled = true
+	}
 }
 
 

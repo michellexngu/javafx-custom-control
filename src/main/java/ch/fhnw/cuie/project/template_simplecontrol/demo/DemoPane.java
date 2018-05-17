@@ -20,7 +20,7 @@ class DemoPane extends BorderPane {
     private Slider      slider;
     private ColorPicker colorPicker;
 
-    DemoPane(PresentationModel pm) {
+    public DemoPane(PresentationModel pm) {
         this.pm = pm;
         initializeControls();
         layoutControls();

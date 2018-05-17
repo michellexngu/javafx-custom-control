@@ -1,45 +1,45 @@
-.businessControl {
+.business-control {
     -fx-padding: 10;
     -base-color: rgb(255, 201, 104);
     -fx-background-color: rgb(255, 255, 250);
 }
 
-.businessControl .drawingPane {
+.business-control .drawing-pane {
     -fx-background-color: transparent;
 }
 
-.businessControl .editableNode {
+.business-control .editable-node {
     -fx-font-family: 'Lato Regular';
     -fx-font-size: 14;
     -fx-text-fill: derive(-base-color, -30%);
     -fx-prompt-text-fill: derive(-base-color, 40%);
 }
 
-.businessControl .editableNode:focused {
+.business-control .editable-node:focused {
     -fx-prompt-text-fill: derive(-base-color, 40%);
     -fx-highlight-fill: derive(-base-color, -30%);
 }
 
-.businessControl:invalid .editableNode {
+.business-control:invalid .editable-node {
     -fx-font-family: 'Lato Light';
     -fx-text-fill: red;
 }
 
-.businessControl:mandatory .editableNode {
+.business-control:mandatory .editable-node {
     -fx-background-color: white;
     -fx-border-color: derive(-base-color, -30%);
     -fx-border-width: 2;
     -fx-border-radius: 4;
 }
 
-.businessControl:mandatory .editableNode:focused {
+.business-control:mandatory .editable-node:focused {
     -fx-background-color: white;
     -fx-border-color: derive(-base-color, -30%);
     -fx-border-width: 2;
     -fx-border-radius: 4;
 }
 
-.businessControl .readOnlyNode {
+.business-control .read-only-node {
     -fx-font-family: 'DS-Digital';
     -fx-pref-width: 80;
     -fx-max-width: 1024;
@@ -49,7 +49,7 @@
     -fx-text-fill: rgb(139, 86, 70);
 }
 
-.businessControl .chooserButton {
+.business-control .chooser-button {
     -fx-font-family: 'FontAwesome';
     -fx-border-color: transparent;
     -fx-background-color: transparent;
@@ -62,7 +62,7 @@
     -fx-cursor: hand;
 }
 
-.businessControl .chooserButton:hover {
+.business-control .chooser-button:hover {
     -fx-background-color: derive(-base-color, 70%);
     -fx-background-radius: 1024;
     -fx-background-insets: 4;

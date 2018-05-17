@@ -54,11 +54,12 @@ class DemoPane extends BorderPane {
 
     private void layoutControls() {
         setCenter(businessControl);
-        VBox box = new VBox(10, new Label("Business Control Properties"),
-                            new Label("Age"), ageSlider,
-                            new Label("readOnly"), readOnlyBox,
+        VBox box = new VBox(10,
+                            new Label("Business Control Properties"),
+                            new Label("Age")      , ageSlider,
+                            new Label("readOnly") , readOnlyBox,
                             new Label("mandatory"), mandatoryBox,
-                            new Label("Label"), labelField);
+                            new Label("Label")    , labelField);
         box.setPadding(new Insets(10));
         box.setSpacing(10);
         setRight(box);

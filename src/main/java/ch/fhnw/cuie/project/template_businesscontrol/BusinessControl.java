@@ -13,15 +13,16 @@ import javafx.scene.control.Control;
 import javafx.scene.control.Skin;
 
 public class BusinessControl extends Control {
+    private static final PseudoClass MANDATORY_CLASS = PseudoClass.getPseudoClass("mandatory");
+    private static final PseudoClass INVALID_CLASS   = PseudoClass.getPseudoClass("invalid");
+
     static final String FORMATTED_INTEGER_PATTERN = "%,d";
 
     private static final String INTEGER_REGEX    = "[+-]?[\\d']{1,14}";
     private static final Pattern INTEGER_PATTERN = Pattern.compile(INTEGER_REGEX);
 
     private final IntegerProperty value = new SimpleIntegerProperty();
-
-    private static final PseudoClass MANDATORY_CLASS = PseudoClass.getPseudoClass("mandatory");
-    private static final PseudoClass INVALID_CLASS   = PseudoClass.getPseudoClass("invalid");
+    private final StringProperty userFacingText = new SimpleStringProperty();
 
     private final BooleanProperty mandatory = new SimpleBooleanProperty() {
         @Override
@@ -41,7 +42,6 @@ public class BusinessControl extends Control {
     private final StringProperty  label        = new SimpleStringProperty();
     private final StringProperty  errorMessage = new SimpleStringProperty();
 
-    private final StringProperty userFacingText = new SimpleStringProperty();
 
     public BusinessControl() {
         initializeSelf();
@@ -66,7 +66,7 @@ public class BusinessControl extends Control {
     }
 
     private void initializeSelf() {
-         getStyleClass().add("businessControl");
+         getStyleClass().add("business-control");
 
          setUserFacingText(convertToString(getValue()));
     }

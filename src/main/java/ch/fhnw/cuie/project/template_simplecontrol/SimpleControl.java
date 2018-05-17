@@ -1,6 +1,7 @@
 package ch.fhnw.cuie.project.template_simplecontrol;
 
 import java.util.List;
+import java.util.Locale;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleDoubleProperty;
@@ -22,6 +23,13 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextBoundsType;
 
+/**
+ * ToDo: CustomControl kurz beschreiben
+ *
+ * ToDo: Autoren ergänzen / ersetzen
+ * @author Dieter Holz
+ */
+//Todo: Umbenennen.
 public class SimpleControl extends Region {
     // needed for StyleableProperties
     private static final StyleablePropertyFactory<SimpleControl> FACTORY = new StyleablePropertyFactory<>(Region.getClassCssMetaData());
@@ -31,30 +39,32 @@ public class SimpleControl extends Region {
         return FACTORY.getCssMetaData();
     }
 
-    private static final double ARTBOARD_WIDTH  = 100;
-    private static final double ARTBOARD_HEIGHT = 100;
+    private static final Locale CH = new Locale("de", "CH");
+
+    private static final double ARTBOARD_WIDTH  = 100;  // Todo: Breite der "Zeichnung" aus dem Grafik-Tool übernehmen
+    private static final double ARTBOARD_HEIGHT = 100;  // Todo: Anpassen an die Breite der Zeichnung
 
     private static final double ASPECT_RATIO = ARTBOARD_WIDTH / ARTBOARD_HEIGHT;
 
-    private static final double MINIMUM_WIDTH  = 25;
+    private static final double MINIMUM_WIDTH  = 25;    // Todo: Anpassen
     private static final double MINIMUM_HEIGHT = MINIMUM_WIDTH / ASPECT_RATIO;
 
-    private static final double MAXIMUM_WIDTH = 800;
+    private static final double MAXIMUM_WIDTH = 800;    // Todo: Anpassen
 
-    // Todo: declare all parts
+    // Todo: diese Parts durch alle notwendigen Parts der gewünschten CustomControl ersetzen
     private Circle backgroundCircle;
     private Text   display;
 
-    // Todo: declare all Properties
+    // Todo: ersetzen durch alle notwendigen Properties der CustomControl
     private final DoubleProperty value = new SimpleDoubleProperty();
 
-    //Todo: declare all CSS stylable properties
+    // Todo: ergänzen mit allen  CSS stylable properties
     private static final CssMetaData<SimpleControl, Color> BASE_COLOR_META_DATA = FACTORY.createColorCssMetaData("-base-color", s -> s.baseColor);
 
     private final StyleableObjectProperty<Color> baseColor = new SimpleStyleableObjectProperty<Color>(BASE_COLOR_META_DATA, this, "baseColor") {
         @Override
         protected void invalidated() {
-            setStyle(getCssMetaData().getProperty() + ": " + colorToCss(getBaseColor()) + ";");
+            setStyle(getCssMetaData().getProperty() + ": " + colorToCss(get()) + ";");
             applyCss();
         }
     };
@@ -66,58 +76,60 @@ public class SimpleControl extends Region {
     public SimpleControl() {
         initializeSelf();
         initializeParts();
+        initializeDrawingPane();
         layoutParts();
         setupEventHandlers();
         setupValueChangeListeners();
-        setupBinding();
+        setupBindings();
     }
 
     private void initializeSelf() {
         // load stylesheets
-        String fonts = getClass().getResource("fonts.css").toExternalForm();
+        String fonts = getClass().getResource("/fonts/fonts.css").toExternalForm();
         getStylesheets().add(fonts);
 
         String stylesheet = getClass().getResource("style.css").toExternalForm();
         getStylesheets().add(stylesheet);
 
-        getStyleClass().add("simpleControl");
+        getStyleClass().add("simple-control");  // Todo: an den Namen der Klasse (des CustomControls) anpassen
     }
 
     private void initializeParts() {
-        //todo initialize all parts
+        //ToDo: alle deklarierten Parts initialisieren
         double center = ARTBOARD_WIDTH * 0.5;
 
         backgroundCircle = new Circle(center, center, center);
-        backgroundCircle.getStyleClass().add("backgroundCircle");
+        backgroundCircle.getStyleClass().add("background-circle");
 
         display = createCenteredText("display");
+    }
 
-        // always needed
+    private void initializeDrawingPane() {
         drawingPane = new Pane();
-        drawingPane.getStyleClass().add("drawingPane");
+        drawingPane.getStyleClass().add("drawing-pane");
         drawingPane.setMaxSize(ARTBOARD_WIDTH, ARTBOARD_HEIGHT);
         drawingPane.setMinSize(ARTBOARD_WIDTH, ARTBOARD_HEIGHT);
         drawingPane.setPrefSize(ARTBOARD_WIDTH, ARTBOARD_HEIGHT);
     }
 
     private void layoutParts() {
-        // todo add all parts to drawingPane
+        // ToDo: alle Parts zur drawingPane hinzufügen
         drawingPane.getChildren().addAll(backgroundCircle, display);
 
         getChildren().add(drawingPane);
     }
 
     private void setupEventHandlers() {
-        //todo
+        //ToDo: bei Bedarf ergänzen
     }
 
     private void setupValueChangeListeners() {
-        //todo
+        //ToDo: bei Bedarf ergänzen
     }
 
-    private void setupBinding() {
-        //todo
-        display.textProperty().bind(valueProperty().asString("%.2f"));
+    private void setupBindings() {
+        //ToDo dieses Binding ersetzen
+        display.textProperty().bind(valueProperty().asString(CH, "%.2f"));
     }
 
 
@@ -165,6 +177,8 @@ public class SimpleControl extends Region {
 
     // some handy functions
 
+    //ToDo: diese Funktionen anschauen und für die Umsetzung des CustomControls benutzen
+
     private double percentageToValue(double percentage, double minValue, double maxValue){
         return ((maxValue - minValue) * percentage) + minValue;
     }
@@ -203,8 +217,8 @@ public class SimpleControl extends Region {
     }
 
     private Point2D pointOnCircle(double cX, double cY, double radius, double angle) {
-        return new Point2D(cX - (radius * Math.cos(Math.toRadians(angle - 90))),
-                           cY + (radius * Math.sin(Math.toRadians(angle - 90))));
+        return new Point2D(cX - (radius * Math.sin(Math.toRadians(angle - 180))),
+                           cY + (radius * Math.cos(Math.toRadians(angle - 180))));
     }
 
     private Text createCenteredText(String styleClass) {
@@ -224,29 +238,74 @@ public class SimpleControl extends Region {
 
         return text;
     }
-
-    private Group createTicks(double cx, double cy, int numberOfTicks, double overallAngle, double tickLength, double indent, double startingAngle, String styleClass) {
-        Group group = new Group();
-
-        double degreesBetweenTicks = overallAngle == 360 ?
-                                     overallAngle /numberOfTicks :
-                                     overallAngle /(numberOfTicks - 1);
-        double outerRadius         = Math.min(cx, cy) - indent;
-        double innerRadius         = Math.min(cx, cy) - indent - tickLength;
-
-        for (int i = 0; i < numberOfTicks; i++) {
-            double angle = 180 + startingAngle + i * degreesBetweenTicks;
-
-            Point2D startPoint = pointOnCircle(cx, cy, outerRadius, angle);
-            Point2D endPoint   = pointOnCircle(cx, cy, innerRadius, angle);
-
-            Line tick = new Line(startPoint.getX(), startPoint.getY(), endPoint.getX(), endPoint.getY());
-            tick.getStyleClass().add(styleClass);
-            group.getChildren().add(tick);
-        }
-
-        return group;
-    }
+//
+//    private Group createTicks(double cx, double cy, int numberOfTicks, double overallAngle, double tickLength, double indent, double startingAngle, String styleClass) {
+//        Group group = new Group();
+//
+//        double degreesBetweenTicks = overallAngle == 360 ?
+//                                     overallAngle /numberOfTicks :
+//                                     overallAngle /(numberOfTicks - 1);
+//        double outerRadius         = Math.min(cx, cy) - indent;
+//        double innerRadius         = Math.min(cx, cy) - indent - tickLength;
+//
+//        for (int i = 0; i < numberOfTicks; i++) {
+//            double angle = 180 + startingAngle + i * degreesBetweenTicks;
+//
+//            Point2D startPoint = pointOnCircle(cx, cy, outerRadius, angle);
+//            Point2D endPoint   = pointOnCircle(cx, cy, innerRadius, angle);
+//
+//            Line tick = new Line(startPoint.getX(), startPoint.getY(), endPoint.getX(), endPoint.getY());
+//            tick.getStyleClass().add(styleClass);
+//            group.getChildren().add(tick);
+//        }
+//
+//        return group;
+//    }
+//
+//    private Group createNumberedTicks(double cx, double cy, int numberOfTicks, double overallAngle, double tickLength, double indent, double startingAngle, String styleClass) {
+//            Group group = new Group();
+//
+//            int width = 30;
+//            double degreesBetweenTicks = overallAngle == 360 ?
+//                    overallAngle / numberOfTicks :
+//                    overallAngle / (numberOfTicks - 1);
+//            double outerRadius = Math.min(cx - width, cy - width) - indent;
+//            double innerRadius = Math.min(cx - width, cy - width) - indent - tickLength;
+//
+//            for (int i = 0; i < numberOfTicks; i++) {
+//                double angle = 180 + startingAngle + i * degreesBetweenTicks;
+//
+//                if (i % 5 == 0 && i % 2 != 0) {
+//                    Point2D startPoint = pointOnCircle(cx, cy, outerRadius, angle);
+//                    Point2D endPoint = pointOnCircle(cx, cy, innerRadius * 0.95, angle);
+//                    Line tick = new Line(startPoint.getX(), startPoint.getY(), endPoint.getX(), endPoint.getY());
+//                    tick.getStyleClass().add(styleClass);
+//                    group.getChildren().add(tick);
+//                }
+//                if (i % 10 == 0) {
+//                    Point2D startPoint = pointOnCircle(cx, cy, outerRadius, angle);
+//                    Point2D endPoint = pointOnCircle(cx, cy, innerRadius * 0.9, angle);
+//
+//                    Line bigTick = new Line(startPoint.getX(), startPoint.getY(), endPoint.getX(), endPoint.getY());
+//                    bigTick.getStyleClass().add(styleClass);
+//                    group.getChildren().add(bigTick);
+//
+//                    Point2D textPosition = pointOnCircle(cx - 7, cy + 5, innerRadius * 0.8, angle);
+//                    Text number = new Text(textPosition.getX(), textPosition.getY(), Integer.toString(i));
+//                    number.getStyleClass().add("tick-number");
+//                    group.getChildren().add(number);
+//
+//                } else {
+//                    Point2D startPoint = pointOnCircle(cx, cy, outerRadius, angle);
+//                    Point2D endPoint = pointOnCircle(cx, cy, innerRadius, angle);
+//                    Line tick = new Line(startPoint.getX(), startPoint.getY(), endPoint.getX(), endPoint.getY());
+//                    tick.getStyleClass().add(styleClass);
+//                    group.getChildren().add(tick);
+//                }
+//            }
+//
+//            return group;
+//        }
 
     private String colorToCss(final Color color) {
   		return color.toString().replace("0x", "#");
@@ -287,8 +346,9 @@ public class SimpleControl extends Region {
         return ARTBOARD_HEIGHT + verticalPadding;
     }
 
-    // all getter and setter
+    // alle getter und setter  (generiert via "Code -> Generate... -> Getter and Setter)
 
+    // ToDo: ersetzen durch die Getter und Setter Ihres CustomControls
     public double getValue() {
         return value.get();
     }

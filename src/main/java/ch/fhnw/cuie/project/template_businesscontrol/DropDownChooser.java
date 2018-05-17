@@ -6,7 +6,7 @@ import javafx.scene.layout.VBox;
 
 
 class DropDownChooser extends VBox {
-    private static final String FONTS_CSS = "fonts.css";
+    private static final String FONTS_CSS = "/fonts/fonts.css";
     private static final String STYLE_CSS = "dropDownChooser.css";
 
     private final BusinessControl businessControl;
@@ -22,7 +22,7 @@ class DropDownChooser extends VBox {
     }
 
     private void initializeSelf() {
-        getStyleClass().add("dropDownChooser");
+        getStyleClass().add("drop-down-chooser");
 
         String fonts = getClass().getResource(FONTS_CSS).toExternalForm();
         getStylesheets().add(fonts);

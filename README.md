@@ -1,16 +1,17 @@
 # CUIE Abschlussprojekt
 
-## Custom Control für HydroPowerFX
+## Custom Control für SkiAreasFX
 
-Entwerfen und implementieren Sie ein Custom Control für das OOP2-Projekt 'HydroPowerFX' auf Basis JavaFX.
+Entwerfen und implementieren Sie ein Custom Control für das OOP2-Projekt 'SkiAreasFX' auf Basis JavaFX.
  - Das Custom Control soll eines (oder mehrere) der im OOP2-Projekt verwendeten Standard-Controls 
  (insbesondere `TextField`, `Label`, `Button`, `TableView`) ersetzen.
- - Das Custom Control soll den jeweiligen Arbeitsschritt optimal unterstützen, beispielsweise durch eine hochspezialisierte Anzeige oder eine 
+ - Das Custom Control soll den Benutzer beim jeweiligen Arbeitsschritt optimal unterstützen, beispielsweise durch eine hochspezialisierte Anzeige oder eine 
 effiziente Eingabemöglichkeit für einen/mehrere der Werte.
  - Falls ihr Custom Control ein _'einfaches, interaktives Anzeigeelement'_ ist, verwenden Sie bei der Implementierung die Struktur 
  wie im package `ch.fhnw.cuie.project.template_simplecontrol`.
  - Falls ihr Custom Control ein _'Business Control'_ ist, das z.B. eines der `TextFields` ersetzen soll, 
- verwenden Sie bei der Implementierung die Struktur wie im package `ch.fhnw.cuie.project.template_businesscontrol`.
+ verwenden Sie bei der Implementierung die Struktur wie im package `ch.fhnw.cuie.project.template_businesscontrol`. Schauen Sie sich dieses 
+ Template auf jeden Fall an. Es ist bereits recht viel Basis-Funktionlität enthalten.
 
 ## Bearbeitet von
  - Vorname, Nachname
@@ -20,22 +21,22 @@ effiziente Eingabemöglichkeit für einen/mehrere der Werte.
 
  
 ## Präsentation
-- **Montag, 4.6.2018**, 19:00 bis 19:45 Uhr, Raum 1.047
+- **Dienstag, 8.1.2019**, 11:05 bis 12:00 Uhr, Raum 6.0D09
 
 - Die Custom Controls werden der OOP2-Klasse im Rahmen einer **Poster-Session** präsentiert.
- - Die Postersession startet mit einer Kurzpräsentation (1 bis 2 Minuten) aller Custom-Controls.
- - Danach werden die Custom-Controls gleichzeitig ausgestellt und Gelegenheit gegeben auf Detailfragen einzugehen.
+- Die Postersession startet mit einer Kurzpräsentation (1 bis 2 Minuten) aller Custom-Controls.
+- Danach werden die Custom-Controls gleichzeitig ausgestellt und Gelegenheit gegeben auf Detailfragen einzugehen.
 
 - Erarbeiten Sie eine geeignete Präsentationsform, so dass das Interesse möglichst vieler OOP2-Teams 
 an Ihrem Custom Control geweckt und ihr CustomControl in die jeweiligen OOP2-Projekte integrieren wird. 
 Es stehen Stellwände zur Verfügung.
 
-- Im Anschluss an die Postersession besteht die Möglichkeit Ihr Control zusammen mit dem OOP2-Team
-in die jeweiligen OOP2-Projekte zu integrieren. Dies ist eine Gemeinschafts-Aufgabe von CUIE- und OOP2-Team.
+- Organisieren Sie einen Integrationstermin zusammen mit dem OOP2-Team. Dies ist eine Gemeinschafts-Aufgabe von CUIE- und OOP2-Team.
+Am Nachmittag stehen die Unterrichtsräume für cuie und oop2 zur Verfügung.
 
 
 ## Abgabe
-- **Mittwoch, 6.6.2017**, 20:42 Uhr
+- **Donnerstag, 10.1.2019**, 20:42 Uhr
 
 - Die Abgabe erfolgt durch einen "Push" auf den Master-Branch Ihres GitHub-Repositories.
 
@@ -51,7 +52,7 @@ in die jeweiligen OOP2-Projekte zu integrieren. Dies ist eine Gemeinschafts-Aufg
  im Unterricht erarbeiteten Konzepte, können Sie eine 5.0 erreichen. Mit nicht compilierbarem Code kann keine bessere Note erreicht werden.
  
 - Die Qualität des Controls aus Benutzersicht wird daran gemessen wie oft das Control in ein OOP2-Projekt integriert 
- wird. Jede Integration wird mit +0.5 bewertet.
+ wird. Jede Integration wird mit +0.5 bewertet, jedoch maximal mit +1.5.
  
 
 ## Bitte beachten Sie
@@ -105,3 +106,4 @@ Die einzelnen Schritte:
 - Warten, warten, warten.
 
 Wenn alles gut gegangen ist sollte im Project-View der Java-Ordner unter src/main blau sein und der Java-Ordner unter src/test grün.
+

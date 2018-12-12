@@ -90,6 +90,8 @@ public class BusinessControl extends Control {
         });
 
         valueProperty().addListener((observable, oldValue, newValue) -> {
+            setInvalid(false);
+            setErrorMessage(null);
             setUserFacingText(convertToString(newValue.intValue()));
         });
     }

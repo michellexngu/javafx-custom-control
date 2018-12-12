@@ -150,17 +150,17 @@ public class SimpleControl extends Region {
         double scalingFactor = width / ARTBOARD_WIDTH;
 
         if (availableWidth > 0 && availableHeight > 0) {
-            relocateCentered();
+            relocateDrawingPaneCentered();
             drawingPane.setScaleX(scalingFactor);
             drawingPane.setScaleY(scalingFactor);
         }
     }
 
-    private void relocateCentered() {
+    private void relocateDrawingPaneCentered() {
         drawingPane.relocate((getWidth() - ARTBOARD_WIDTH) * 0.5, (getHeight() - ARTBOARD_HEIGHT) * 0.5);
     }
 
-    private void relocateCenterBottom(double scaleY, double paddingBottom) {
+    private void relocateDrawingPaneCenterBottom(double scaleY, double paddingBottom) {
         double visualHeight = ARTBOARD_HEIGHT * scaleY;
         double visualSpace  = getHeight() - visualHeight;
         double y            = visualSpace + (visualHeight - ARTBOARD_HEIGHT) * 0.5 - paddingBottom;
@@ -168,7 +168,7 @@ public class SimpleControl extends Region {
         drawingPane.relocate((getWidth() - ARTBOARD_WIDTH) * 0.5, y);
     }
 
-    private void relocateCenterTop(double scaleY, double paddingTop) {
+    private void relocateDrawingPaneCenterTop(double scaleY, double paddingTop) {
         double visualHeight = ARTBOARD_HEIGHT * scaleY;
         double y            = (visualHeight - ARTBOARD_HEIGHT) * 0.5 + paddingTop;
 
@@ -238,30 +238,30 @@ public class SimpleControl extends Region {
 
         return text;
     }
-//
-//    private Group createTicks(double cx, double cy, int numberOfTicks, double overallAngle, double tickLength, double indent, double startingAngle, String styleClass) {
-//        Group group = new Group();
-//
-//        double degreesBetweenTicks = overallAngle == 360 ?
-//                                     overallAngle /numberOfTicks :
-//                                     overallAngle /(numberOfTicks - 1);
-//        double outerRadius         = Math.min(cx, cy) - indent;
-//        double innerRadius         = Math.min(cx, cy) - indent - tickLength;
-//
-//        for (int i = 0; i < numberOfTicks; i++) {
-//            double angle = 180 + startingAngle + i * degreesBetweenTicks;
-//
-//            Point2D startPoint = pointOnCircle(cx, cy, outerRadius, angle);
-//            Point2D endPoint   = pointOnCircle(cx, cy, innerRadius, angle);
-//
-//            Line tick = new Line(startPoint.getX(), startPoint.getY(), endPoint.getX(), endPoint.getY());
-//            tick.getStyleClass().add(styleClass);
-//            group.getChildren().add(tick);
-//        }
-//
-//        return group;
-//    }
-//
+
+    private Group createTicks(double cx, double cy, int numberOfTicks, double overallAngle, double tickLength, double indent, double startingAngle, String styleClass) {
+        Group group = new Group();
+
+        double degreesBetweenTicks = overallAngle == 360 ?
+                                     overallAngle /numberOfTicks :
+                                     overallAngle /(numberOfTicks - 1);
+        double outerRadius         = Math.min(cx, cy) - indent;
+        double innerRadius         = Math.min(cx, cy) - indent - tickLength;
+
+        for (int i = 0; i < numberOfTicks; i++) {
+            double angle = 180 + startingAngle + i * degreesBetweenTicks;
+
+            Point2D startPoint = pointOnCircle(cx, cy, outerRadius, angle);
+            Point2D endPoint   = pointOnCircle(cx, cy, innerRadius, angle);
+
+            Line tick = new Line(startPoint.getX(), startPoint.getY(), endPoint.getX(), endPoint.getY());
+            tick.getStyleClass().add(styleClass);
+            group.getChildren().add(tick);
+        }
+
+        return group;
+    }
+
 //    private Group createNumberedTicks(double cx, double cy, int numberOfTicks, double overallAngle, double tickLength, double indent, double startingAngle, String styleClass) {
 //            Group group = new Group();
 //

@@ -7,14 +7,14 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
-import ch.fhnw.cuie.project.template_simplecontrol.SimpleControl;
+import ch.fhnw.cuie.project.template_simplecontrol.SnowControl;
 
 class DemoPane extends BorderPane {
 
     private final PresentationModel pm;
 
     // declare the custom control
-    private SimpleControl cc;
+    private SnowControl cc;
 
     // all controls
     private Slider      slider;
@@ -30,7 +30,7 @@ class DemoPane extends BorderPane {
     private void initializeControls() {
         setPadding(new Insets(10));
 
-        cc = new SimpleControl();
+        cc = new SnowControl();
 
         slider = new Slider();
         slider.setShowTickLabels(true);
@@ -39,7 +39,7 @@ class DemoPane extends BorderPane {
     }
 
     private void layoutControls() {
-        VBox controlPane = new VBox(new Label("SimpleControl Properties"),
+        VBox controlPane = new VBox(new Label("SnowControl Properties"),
                                     slider, colorPicker);
         controlPane.setPadding(new Insets(0, 50, 0, 50));
         controlPane.setSpacing(10);

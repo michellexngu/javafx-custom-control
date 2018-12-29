@@ -53,14 +53,14 @@ public class SimpleControl extends Region {
     private static final double MAXIMUM_WIDTH = 800;    // Todo: Anpassen
 
     // Todo: diese Parts durch alle notwendigen Parts der gewünschten CustomControl ersetzen
-    private Circle backgroundCircle;
+    //private Circle backgroundCircle;
     private Text   display;
 
-    private Rectangle sky;
-    private Region summitLeft;
-    private Region mountainLeft;
+    //private Rectangle sky;
+    //private Region summitLeft;
+    //private Region mountainLeft;
 
-    private Region snowHill;
+    //private Region snowHill;
 
     private Rectangle slider;
     private Region sliderButton;
@@ -111,23 +111,22 @@ public class SimpleControl extends Region {
 
         display = createCenteredText("display");
 
-        sky = new Rectangle(0, 0, 500, 350);
-        sky.getStyleClass().add("sky");
-
-        snowHill = new Region();
-        snowHill.getStyleClass().add("snow-hill");
-
-        summitLeft = new Region();
-        summitLeft.getStyleClass().add("summit-left");
-
-        mountainLeft = new Region();
-        mountainLeft.getStyleClass().add("mountain-left");
-
-        slider = new Rectangle(0, 121, 51, 229);
+        slider = new Rectangle(1, 122, 51, 229);
         slider.getStyleClass().add("snow-slider");
 
         sliderButton = new Region();
         sliderButton.getStyleClass().add("slider-button");
+
+        //snowHill = new Region();
+        //snowHill.getStyleClass().add("snow-hill");
+
+        //summitLeft = new Region();
+        //summitLeft.getStyleClass().add("summit-left");
+
+        //mountainLeft = new Region();
+        //mountainLeft.getStyleClass().add("mountain-left");
+
+
     }
 
     private void initializeDrawingPane() {
@@ -140,7 +139,7 @@ public class SimpleControl extends Region {
 
     private void layoutParts() {
         // ToDo: alle Parts zur drawingPane hinzufügen
-        drawingPane.getChildren().addAll(sky, snowHill, summitLeft, mountainLeft, slider, sliderButton);
+        drawingPane.getChildren().addAll(slider, sliderButton);
 
         getChildren().add(drawingPane);
     }

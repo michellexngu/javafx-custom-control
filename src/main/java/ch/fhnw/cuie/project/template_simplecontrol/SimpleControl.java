@@ -19,6 +19,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextBoundsType;
@@ -41,8 +42,8 @@ public class SimpleControl extends Region {
 
     private static final Locale CH = new Locale("de", "CH");
 
-    private static final double ARTBOARD_WIDTH  = 100;  // Todo: Breite der "Zeichnung" aus dem Grafik-Tool übernehmen
-    private static final double ARTBOARD_HEIGHT = 100;  // Todo: Anpassen an die Breite der Zeichnung
+    private static final double ARTBOARD_WIDTH  = 500;  // Todo: Breite der "Zeichnung" aus dem Grafik-Tool übernehmen
+    private static final double ARTBOARD_HEIGHT = 350;  // Todo: Anpassen an die Breite der Zeichnung
 
     private static final double ASPECT_RATIO = ARTBOARD_WIDTH / ARTBOARD_HEIGHT;
 
@@ -54,6 +55,16 @@ public class SimpleControl extends Region {
     // Todo: diese Parts durch alle notwendigen Parts der gewünschten CustomControl ersetzen
     private Circle backgroundCircle;
     private Text   display;
+
+    private Rectangle sky;
+    private Region summitLeft;
+    private Region mountainLeft;
+
+    private Region snowHill;
+
+    private Rectangle slider;
+    private Region sliderButton;
+
 
     // Todo: ersetzen durch alle notwendigen Properties der CustomControl
     private final DoubleProperty value = new SimpleDoubleProperty();
@@ -98,10 +109,25 @@ public class SimpleControl extends Region {
         //ToDo: alle deklarierten Parts initialisieren
         double center = ARTBOARD_WIDTH * 0.5;
 
-        backgroundCircle = new Circle(center, center, center);
-        backgroundCircle.getStyleClass().add("background-circle");
-
         display = createCenteredText("display");
+
+        sky = new Rectangle(0, 0, 500, 350);
+        sky.getStyleClass().add("sky");
+
+        snowHill = new Region();
+        snowHill.getStyleClass().add("snow-hill");
+
+        summitLeft = new Region();
+        summitLeft.getStyleClass().add("summit-left");
+
+        mountainLeft = new Region();
+        mountainLeft.getStyleClass().add("mountain-left");
+
+        slider = new Rectangle(0, 121, 51, 229);
+        slider.getStyleClass().add("snow-slider");
+
+        sliderButton = new Region();
+        sliderButton.getStyleClass().add("slider-button");
     }
 
     private void initializeDrawingPane() {
@@ -114,7 +140,7 @@ public class SimpleControl extends Region {
 
     private void layoutParts() {
         // ToDo: alle Parts zur drawingPane hinzufügen
-        drawingPane.getChildren().addAll(backgroundCircle, display);
+        drawingPane.getChildren().addAll(sky, snowHill, summitLeft, mountainLeft, slider, sliderButton);
 
         getChildren().add(drawingPane);
     }

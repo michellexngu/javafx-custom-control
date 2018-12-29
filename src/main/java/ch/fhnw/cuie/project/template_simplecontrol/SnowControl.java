@@ -17,8 +17,8 @@ import javafx.scene.Group;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -31,9 +31,9 @@ import javafx.scene.text.TextBoundsType;
  * @author Dieter Holz
  */
 //Todo: Umbenennen.
-public class SimpleControl extends Region {
+public class SnowControl extends Region {
     // needed for StyleableProperties
-    private static final StyleablePropertyFactory<SimpleControl> FACTORY = new StyleablePropertyFactory<>(Region.getClassCssMetaData());
+    private static final StyleablePropertyFactory<SnowControl> FACTORY = new StyleablePropertyFactory<>(Region.getClassCssMetaData());
 
     @Override
     public List<CssMetaData<? extends Styleable, ?>> getCssMetaData() {
@@ -53,24 +53,28 @@ public class SimpleControl extends Region {
     private static final double MAXIMUM_WIDTH = 800;    // Todo: Anpassen
 
     // Todo: diese Parts durch alle notwendigen Parts der gewünschten CustomControl ersetzen
-    private Circle backgroundCircle;
     private Text   display;
 
     private Rectangle sky;
     private Region summitLeft;
     private Region mountainLeft;
+    private Polygon shadowLeft;
+    private Region mountains;
 
     private Region snowHill;
 
     private Rectangle slider;
     private Region sliderButton;
+    private Group sliderLines;
+
+
 
 
     // Todo: ersetzen durch alle notwendigen Properties der CustomControl
     private final DoubleProperty value = new SimpleDoubleProperty();
 
     // Todo: ergänzen mit allen  CSS stylable properties
-    private static final CssMetaData<SimpleControl, Color> BASE_COLOR_META_DATA = FACTORY.createColorCssMetaData("-base-color", s -> s.baseColor);
+    private static final CssMetaData<SnowControl, Color> BASE_COLOR_META_DATA = FACTORY.createColorCssMetaData("-base-color", s -> s.baseColor);
 
     private final StyleableObjectProperty<Color> baseColor = new SimpleStyleableObjectProperty<Color>(BASE_COLOR_META_DATA, this, "baseColor") {
         @Override
@@ -84,7 +88,7 @@ public class SimpleControl extends Region {
     // needed for resizing
     private Pane drawingPane;
 
-    public SimpleControl() {
+    public SnowControl() {
         initializeSelf();
         initializeParts();
         initializeDrawingPane();
@@ -123,11 +127,26 @@ public class SimpleControl extends Region {
         mountainLeft = new Region();
         mountainLeft.getStyleClass().add("mountain-left");
 
+        shadowLeft = new Polygon();
+        shadowLeft.getStyleClass().add("shadow-left");
+
+        mountains = new Region();
+        mountains.setPrefHeight(274.23);
+        mountains.setPrefWidth(437.46);
+        mountains.setLayoutX(60);
+        mountains.setLayoutY(52);;
+        mountains.getStyleClass().add("mountains");
+
         slider = new Rectangle(0, 121, 51, 229);
         slider.getStyleClass().add("snow-slider");
 
         sliderButton = new Region();
         sliderButton.getStyleClass().add("slider-button");
+
+        sliderLines = new Group();
+        sliderLines.getStyleClass().add("slider-lines");
+
+
     }
 
     private void initializeDrawingPane() {
@@ -140,7 +159,7 @@ public class SimpleControl extends Region {
 
     private void layoutParts() {
         // ToDo: alle Parts zur drawingPane hinzufügen
-        drawingPane.getChildren().addAll(sky, snowHill, summitLeft, mountainLeft, slider, sliderButton);
+        drawingPane.getChildren().addAll(sky, slider, mountains);
 
         getChildren().add(drawingPane);
     }

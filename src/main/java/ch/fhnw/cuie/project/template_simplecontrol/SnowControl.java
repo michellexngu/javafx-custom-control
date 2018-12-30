@@ -15,14 +15,10 @@ import javafx.geometry.Point2D;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.TriangleMesh;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextBoundsType;
@@ -63,7 +59,11 @@ public class SnowControl extends Region {
     private Button sliderButton;
     private Region fallingSnow;
 
-    private Region snowHill;
+    private Region snowHillRight;
+    private Region snowShadowRight;
+    private Region snowHillLeft;
+    private Region snowShadowLeft;
+    private Region snowHillBottom;
 
 
     // Todo: ersetzen durch alle notwendigen Properties der CustomControl
@@ -82,6 +82,8 @@ public class SnowControl extends Region {
 
     // needed for resizing
     private Pane drawingPane;
+
+    private Group snowHillGroup;
 
     public SnowControl() {
         initializeSelf();
@@ -107,8 +109,40 @@ public class SnowControl extends Region {
     private void initializeParts() {
         //ToDo: alle deklarierten Parts initialisieren
 
-        snowHill = new Region();
-        snowHill.getStyleClass().add("snow-hill");
+        snowHillRight = new Region();
+        snowHillRight.getStyleClass().add("snow-hill-right");
+        snowHillRight.setPrefWidth(323.4);
+        snowHillRight.setPrefHeight(132.32);
+        snowHillRight.setLayoutX(177);
+        snowHillRight.setLayoutY(217);
+
+        snowShadowRight = new Region();
+        snowShadowRight.getStyleClass().add("snow-shadow-right");
+        snowShadowRight.setPrefWidth(299.8);
+        snowShadowRight.setPrefHeight(72.93);
+        snowShadowRight.setLayoutX(200);
+        snowShadowRight.setLayoutY(229);
+
+        snowHillLeft = new Region();
+        snowHillLeft.getStyleClass().add("snow-hill-left");
+        snowHillLeft.setPrefWidth(499.98);
+        snowHillLeft.setPrefHeight(127.24);
+        snowHillLeft.setLayoutX(0);
+        snowHillLeft.setLayoutY(222);
+
+        snowShadowLeft = new Region();
+        snowShadowLeft.getStyleClass().add("snow-shadow-left");
+        snowShadowLeft.setPrefWidth(499.97);
+        snowShadowLeft.setPrefHeight(89.69);
+        snowShadowLeft.setLayoutX(0);
+        snowShadowLeft.setLayoutY(257);
+
+        snowHillBottom = new Region();
+        snowHillBottom.getStyleClass().add("snow-hill-bottom");
+        snowHillBottom.setPrefWidth(500);
+        snowHillBottom.setPrefHeight(68);
+        snowHillBottom.setLayoutX(0);
+        snowHillBottom.setLayoutY(282);
 
         mountains = new Region();
         mountains.setPrefHeight(274.23);
@@ -120,13 +154,13 @@ public class SnowControl extends Region {
         snowSlider = new Region();
         snowSlider.setPrefHeight(229.02);
         snowSlider.setPrefWidth(50.81);
-        snowSlider.setLayoutX(-5);
-        snowSlider.setLayoutY(125);
+        snowSlider.setLayoutX(0);
+        snowSlider.setLayoutY(121);
         snowSlider.getStyleClass().add("snow-slider");
 
         sliderButton = new Button();
-        sliderButton.setLayoutY(212.5);
-        sliderButton.setLayoutX(-3);
+        sliderButton.setLayoutY(213);
+        sliderButton.setLayoutX(2);
         sliderButton.getStyleClass().add("slider-button");
 
         fallingSnow = new Region();
@@ -141,11 +175,15 @@ public class SnowControl extends Region {
         drawingPane.setMaxSize(ARTBOARD_WIDTH, ARTBOARD_HEIGHT);
         drawingPane.setMinSize(ARTBOARD_WIDTH, ARTBOARD_HEIGHT);
         drawingPane.setPrefSize(ARTBOARD_WIDTH, ARTBOARD_HEIGHT);
+
+        snowHillGroup = new Group();
     }
 
     private void layoutParts() {
         // ToDo: alle Parts zur drawingPane hinzufügen
-        drawingPane.getChildren().addAll(fallingSnow, mountains, snowSlider, sliderButton);
+
+        snowHillGroup.getChildren().addAll(snowHillRight, snowShadowRight, snowHillLeft, snowShadowLeft, snowHillBottom);
+        drawingPane.getChildren().addAll(fallingSnow, mountains, snowHillGroup, snowSlider, sliderButton);
 
         getChildren().add(drawingPane);
     }

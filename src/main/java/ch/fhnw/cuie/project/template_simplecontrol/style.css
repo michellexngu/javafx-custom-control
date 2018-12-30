@@ -64,6 +64,8 @@
     -fx-rotate: 90;
     -fx-pref-height: 22;
     -fx-pref-width: 26;
+    -fx-cursor: hand;
+
 }
 
 .Snow-control .falling-snow{
@@ -71,6 +73,11 @@
     -fx-pref-width: 500;
     -fx-pref-height: 350;
 
+}
+
+.Snow-control .snow-hill-group {
+    -fx-pref-height: 233;
+    -fx-pref-width: 100;
 }
 
 

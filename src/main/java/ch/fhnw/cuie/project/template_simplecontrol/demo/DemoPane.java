@@ -1,24 +1,25 @@
 package ch.fhnw.cuie.project.template_simplecontrol.demo;
 
 import javafx.geometry.Insets;
-import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 import ch.fhnw.cuie.project.template_simplecontrol.SnowControl;
+import javafx.util.converter.NumberStringConverter;
 
 class DemoPane extends BorderPane {
 
     private final PresentationModel pm;
 
     // declare the custom control
-    private SnowControl cc;
+    private SnowControl snowControl;
 
     // all controls
     private TextField snowHeight;
+    private Label snowHeightLabel;
+    private Label schneehöhe;
 
 
     public DemoPane(PresentationModel pm) {
@@ -26,27 +27,44 @@ class DemoPane extends BorderPane {
         initializeControls();
         layoutControls();
         setupBindings();
+        setupValueChangeListener();
     }
 
     private void initializeControls() {
         setPadding(new Insets(10));
 
-        cc = new SnowControl();
+        snowControl = new SnowControl();
         snowHeight = new TextField();
+        snowHeightLabel = new Label("Current height:");
+        schneehöhe = new Label();
     }
 
     private void layoutControls() {
-        VBox controlPane = new VBox(new Label("Snow Height"),
+        VBox controlPane = new VBox(new Label("Snow"),snowHeightLabel, schneehöhe,
                                     snowHeight);
         controlPane.setPadding(new Insets(0, 50, 0, 50));
         controlPane.setSpacing(10);
 
-        setCenter(cc);
+        setCenter(snowControl);
         setRight(controlPane);
     }
 
     private void setupBindings() {
-        cc.valueProperty().bindBidirectional(pm.pmValueProperty());
+        //snowControl.valueProperty().bindBidirectional(pm.pmValueProperty());
+        snowHeight.textProperty().bindBidirectional(pm.snowValueProperty(), new NumberStringConverter());
+        snowControl.valueProperty().bindBidirectional(pm.snowValueProperty());
+    }
+
+    private void setupValueChangeListener() {
+        snowHeight.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (snowHeight.getText().isEmpty()) {
+
+            }
+            else if(!(Double.valueOf(newValue).doubleValue() >=-300 && Double.valueOf(newValue).doubleValue() <=300 )){
+                this.snowHeight.textProperty().setValue(oldValue);
+            }
+
+        });
 
     }
 

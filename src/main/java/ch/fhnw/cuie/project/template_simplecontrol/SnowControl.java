@@ -69,16 +69,10 @@ public class SnowControl extends Region {
     // Todo: ersetzen durch alle notwendigen Properties der CustomControl
     private final DoubleProperty value = new SimpleDoubleProperty();
 
-    // Todo: ergänzen mit allen  CSS stylable properties
-    private static final CssMetaData<SnowControl, Color> BASE_COLOR_META_DATA = FACTORY.createColorCssMetaData("-base-color", s -> s.baseColor);
 
-    private final StyleableObjectProperty<Color> baseColor = new SimpleStyleableObjectProperty<Color>(BASE_COLOR_META_DATA, this, "baseColor") {
-        @Override
-        protected void invalidated() {
-            setStyle(getCssMetaData().getProperty() + ": " + colorToCss(get()) + ";");
-            applyCss();
-        }
-    };
+
+    // Todo: ergänzen mit allen  CSS stylable properties
+
 
     // needed for resizing
     private Pane drawingPane;
@@ -167,6 +161,11 @@ public class SnowControl extends Region {
         fallingSnow.getStyleClass().add("falling-snow");
         fallingSnow.setVisible(true);
 
+        snowHillGroup = new Group();
+        snowHillGroup.getStyleClass().add("snow-hill-group");
+        snowHillGroup.prefHeight(10);
+
+
     }
 
     private void initializeDrawingPane() {
@@ -175,8 +174,6 @@ public class SnowControl extends Region {
         drawingPane.setMaxSize(ARTBOARD_WIDTH, ARTBOARD_HEIGHT);
         drawingPane.setMinSize(ARTBOARD_WIDTH, ARTBOARD_HEIGHT);
         drawingPane.setPrefSize(ARTBOARD_WIDTH, ARTBOARD_HEIGHT);
-
-        snowHillGroup = new Group();
     }
 
     private void layoutParts() {
@@ -190,15 +187,36 @@ public class SnowControl extends Region {
 
     private void setupEventHandlers() {
         //ToDo: bei Bedarf ergänzen
+        sliderButton.setOnMouseDragged(event -> {
+            double sliderButtonStart = 55 ;
+            double sliderButtonHeight = 182;
+            double maxSnowHeight = 300.0;
+
+            double mousePosInSliderButton = Math.min(Math.max(event.getX() - sliderButtonStart, 0), sliderButtonHeight);
+
+            double percentage = mousePosInSliderButton / (sliderButtonHeight/maxSnowHeight);
+
+            setValue(maxSnowHeight-percentage);
+        });
     }
 
     private void setupValueChangeListeners() {
         //ToDo: bei Bedarf ergänzen
+        valueProperty().addListener((observable, oldValue, newValue) -> {
+            double line = valueToPercentage(newValue.doubleValue(), 0, 300);
+
+            sliderButton.setLayoutY(182-(182*line)+55);
+
+        });
     }
 
     private void setupBindings() {
         //ToDo dieses Binding ersetzen
 
+    }
+
+    private void performPeriodicTask() {
+        snowHillGroup.setVisible(!snowHillGroup.isVisible());
     }
 
 

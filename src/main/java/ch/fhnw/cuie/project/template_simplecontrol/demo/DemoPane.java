@@ -39,7 +39,7 @@ class DemoPane extends BorderPane {
     private void layoutControls() {
         VBox controlPane = new VBox(new Label("Snow"),
                             snowHeightLabel, snowHeight);
-        
+
         controlPane.setPadding(new Insets(0, 20, 0, 20));
         controlPane.setSpacing(2);
 

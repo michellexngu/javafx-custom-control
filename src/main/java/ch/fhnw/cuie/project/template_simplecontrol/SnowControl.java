@@ -60,10 +60,11 @@ public class SnowControl extends Region {
     private Region mountainLeft;
     private Polygon shadowLeft;
     private Region mountains;
+    private Region snowSlider;
 
     private Region snowHill;
 
-    private Rectangle slider;
+    //private Rectangle slider;
     private Region sliderButton;
     private Group sliderLines;
 
@@ -137,8 +138,15 @@ public class SnowControl extends Region {
         mountains.setLayoutY(52);;
         mountains.getStyleClass().add("mountains");
 
-        slider = new Rectangle(0, 121, 51, 229);
-        slider.getStyleClass().add("snow-slider");
+        snowSlider = new Region();
+        snowSlider.setPrefHeight(229.02);
+        snowSlider.setPrefWidth(50.81);
+        snowSlider.setLayoutX(0.3);
+        snowSlider.setLayoutY(120.93);
+        snowSlider.getStyleClass().add("snow-slider");
+
+        //slider = new Rectangle(0, 121, 51, 229);
+        //slider.getStyleClass().add("snow-slider");
 
         sliderButton = new Region();
         sliderButton.getStyleClass().add("slider-button");
@@ -159,7 +167,7 @@ public class SnowControl extends Region {
 
     private void layoutParts() {
         // ToDo: alle Parts zur drawingPane hinzufügen
-        drawingPane.getChildren().addAll(sky, slider, mountains);
+        drawingPane.getChildren().addAll(sky, snowSlider, mountains);
 
         getChildren().add(drawingPane);
     }

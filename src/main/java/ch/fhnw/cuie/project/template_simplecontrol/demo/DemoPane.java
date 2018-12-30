@@ -19,8 +19,6 @@ class DemoPane extends BorderPane {
     // all controls
     private TextField snowHeight;
     private Label snowHeightLabel;
-    private Label schneehöhe;
-
 
     public DemoPane(PresentationModel pm) {
         this.pm = pm;
@@ -36,14 +34,14 @@ class DemoPane extends BorderPane {
         snowControl = new SnowControl();
         snowHeight = new TextField();
         snowHeightLabel = new Label("Current height:");
-        schneehöhe = new Label();
     }
 
     private void layoutControls() {
-        VBox controlPane = new VBox(new Label("Snow"),snowHeightLabel, schneehöhe,
-                                    snowHeight);
-        controlPane.setPadding(new Insets(0, 50, 0, 50));
-        controlPane.setSpacing(10);
+        VBox controlPane = new VBox(new Label("Snow"),
+                            snowHeightLabel, snowHeight);
+        
+        controlPane.setPadding(new Insets(0, 20, 0, 20));
+        controlPane.setSpacing(2);
 
         setCenter(snowControl);
         setRight(controlPane);
@@ -63,9 +61,7 @@ class DemoPane extends BorderPane {
             else if(!(Double.valueOf(newValue).doubleValue() >=-300 && Double.valueOf(newValue).doubleValue() <=300 )){
                 this.snowHeight.textProperty().setValue(oldValue);
             }
-
         });
-
     }
 
 }

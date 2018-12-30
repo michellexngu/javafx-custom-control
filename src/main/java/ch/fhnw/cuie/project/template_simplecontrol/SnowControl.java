@@ -31,7 +31,6 @@ import javafx.scene.text.TextBoundsType;
  * Michelle Ngu
  */
 
-//Todo: Umbenennen.
 public class SnowControl extends Region {
     // needed for StyleableProperties
     private static final StyleablePropertyFactory<SnowControl> FACTORY = new StyleablePropertyFactory<>(Region.getClassCssMetaData());
@@ -43,7 +42,7 @@ public class SnowControl extends Region {
 
     private static final Locale CH = new Locale("de", "CH");
 
-    private static final double ARTBOARD_WIDTH  = 500;  // Todo: Breite der "Zeichnung" aus dem Grafik-Tool übernehmen
+    private static final double ARTBOARD_WIDTH  = 500;
     private static final double ARTBOARD_HEIGHT = 350;
 
     private static final double ASPECT_RATIO = ARTBOARD_WIDTH / ARTBOARD_HEIGHT;
@@ -68,7 +67,6 @@ public class SnowControl extends Region {
 
     // Todo: ersetzen durch alle notwendigen Properties der CustomControl
     private final DoubleProperty value = new SimpleDoubleProperty();
-
 
 
     // Todo: ergänzen mit allen  CSS stylable properties
@@ -178,7 +176,6 @@ public class SnowControl extends Region {
 
     private void layoutParts() {
         // ToDo: alle Parts zur drawingPane hinzufügen
-
         snowHillGroup.getChildren().addAll(snowHillRight, snowShadowRight, snowHillLeft, snowShadowLeft, snowHillBottom);
         drawingPane.getChildren().addAll(fallingSnow, mountains, snowHillGroup, snowSlider, sliderButton);
 
@@ -188,7 +185,7 @@ public class SnowControl extends Region {
     private void setupEventHandlers() {
         //ToDo: bei Bedarf ergänzen
         sliderButton.setOnMouseDragged(event -> {
-            double sliderButtonStart = 55 ;
+            double sliderButtonStart = 131;
             double sliderButtonHeight = 182;
             double maxSnowHeight = 300.0;
 
@@ -205,7 +202,7 @@ public class SnowControl extends Region {
         valueProperty().addListener((observable, oldValue, newValue) -> {
             double line = valueToPercentage(newValue.doubleValue(), 0, 300);
 
-            sliderButton.setLayoutY(182-(182*line)+55);
+            sliderButton.setLayoutY(182-(182*line)+131);
 
         });
     }

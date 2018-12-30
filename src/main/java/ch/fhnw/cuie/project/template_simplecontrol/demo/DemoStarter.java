@@ -9,7 +9,7 @@ public class DemoStarter extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        PresentationModel pm        = new PresentationModel();
+        SnowPM pm        = new SnowPM();
         Region            rootPanel = new DemoPane(pm);
 
         Scene scene = new Scene(rootPanel);

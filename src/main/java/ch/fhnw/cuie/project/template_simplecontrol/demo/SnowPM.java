@@ -6,7 +6,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.paint.Color;
 
-public class PresentationModel {
+public class SnowPM {
     private final DoubleProperty        pmValue   = new SimpleDoubleProperty();
     private final DoubleProperty        snowValue = new SimpleDoubleProperty();
 

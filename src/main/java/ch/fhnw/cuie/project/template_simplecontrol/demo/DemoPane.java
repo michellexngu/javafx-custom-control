@@ -11,7 +11,7 @@ import javafx.util.converter.NumberStringConverter;
 
 class DemoPane extends BorderPane {
 
-    private final PresentationModel pm;
+    private final SnowPM pm;
 
     // declare the custom control
     private SnowControl snowControl;
@@ -20,7 +20,7 @@ class DemoPane extends BorderPane {
     private TextField snowHeight;
     private Label snowHeightLabel;
 
-    public DemoPane(PresentationModel pm) {
+    public DemoPane(SnowPM pm) {
         this.pm = pm;
         initializeControls();
         layoutControls();
@@ -33,7 +33,7 @@ class DemoPane extends BorderPane {
 
         snowControl = new SnowControl();
         snowHeight = new TextField();
-        snowHeightLabel = new Label("Current height:");
+        snowHeightLabel = new Label("Current height in cm:");
     }
 
     private void layoutControls() {

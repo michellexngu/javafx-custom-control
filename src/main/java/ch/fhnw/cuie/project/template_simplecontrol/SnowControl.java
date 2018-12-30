@@ -24,7 +24,8 @@ import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextBoundsType;
 
 /**
- * ToDo: CustomControl kurz beschreiben
+ * Unseres Snow Control zeigt die aktuelle Schneehöhe des ausgewählten Skigebiets an. Man kann die Schnenhöhe beliebig
+ * mit dem Eingabefeld oder dem Slider im Control ändern und neu setzten.
  *
  * @author
  * Julia Müller

@@ -14,12 +14,15 @@ import javafx.geometry.Insets;
 import javafx.geometry.Point2D;
 import javafx.geometry.VPos;
 import javafx.scene.Group;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.TriangleMesh;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextBoundsType;
@@ -27,9 +30,11 @@ import javafx.scene.text.TextBoundsType;
 /**
  * ToDo: CustomControl kurz beschreiben
  *
- * ToDo: Autoren ergänzen / ersetzen
- * @author Dieter Holz
+ * @author
+ * Julia Müller
+ * Michelle Ngu
  */
+
 //Todo: Umbenennen.
 public class SnowControl extends Region {
     // needed for StyleableProperties
@@ -43,7 +48,7 @@ public class SnowControl extends Region {
     private static final Locale CH = new Locale("de", "CH");
 
     private static final double ARTBOARD_WIDTH  = 500;  // Todo: Breite der "Zeichnung" aus dem Grafik-Tool übernehmen
-    private static final double ARTBOARD_HEIGHT = 350;  // Todo: Anpassen an die Breite der Zeichnung
+    private static final double ARTBOARD_HEIGHT = 350;
 
     private static final double ASPECT_RATIO = ARTBOARD_WIDTH / ARTBOARD_HEIGHT;
 
@@ -53,23 +58,12 @@ public class SnowControl extends Region {
     private static final double MAXIMUM_WIDTH = 800;    // Todo: Anpassen
 
     // Todo: diese Parts durch alle notwendigen Parts der gewünschten CustomControl ersetzen
-    //private Circle backgroundCircle;
-    private Text   display;
-
-    private Rectangle sky;
-    private Region summitLeft;
-    private Region mountainLeft;
-    private Polygon shadowLeft;
     private Region mountains;
     private Region snowSlider;
+    private Button sliderButton;
+    private Region fallingSnow;
 
     private Region snowHill;
-
-    //private Rectangle slider;
-    private Region sliderButton;
-    private Group sliderLines;
-
-
 
 
     // Todo: ersetzen durch alle notwendigen Properties der CustomControl
@@ -85,7 +79,6 @@ public class SnowControl extends Region {
             applyCss();
         }
     };
-
 
     // needed for resizing
     private Pane drawingPane;
@@ -108,29 +101,14 @@ public class SnowControl extends Region {
         String stylesheet = getClass().getResource("style.css").toExternalForm();
         getStylesheets().add(stylesheet);
 
-        getStyleClass().add("simple-control");  // Todo: an den Namen der Klasse (des CustomControls) anpassen
+        getStyleClass().add("Snow-control");
     }
 
     private void initializeParts() {
         //ToDo: alle deklarierten Parts initialisieren
-        double center = ARTBOARD_WIDTH * 0.5;
-
-        display = createCenteredText("display");
-
-        sky = new Rectangle(0, 0, 500, 350);
-        sky.getStyleClass().add("sky");
 
         snowHill = new Region();
         snowHill.getStyleClass().add("snow-hill");
-
-        summitLeft = new Region();
-        summitLeft.getStyleClass().add("summit-left");
-
-        mountainLeft = new Region();
-        mountainLeft.getStyleClass().add("mountain-left");
-
-        shadowLeft = new Polygon();
-        shadowLeft.getStyleClass().add("shadow-left");
 
         mountains = new Region();
         mountains.setPrefHeight(274.23);
@@ -142,19 +120,18 @@ public class SnowControl extends Region {
         snowSlider = new Region();
         snowSlider.setPrefHeight(229.02);
         snowSlider.setPrefWidth(50.81);
-        snowSlider.setLayoutX(0.3);
-        snowSlider.setLayoutY(120.93);
+        snowSlider.setLayoutX(-5);
+        snowSlider.setLayoutY(125);
         snowSlider.getStyleClass().add("snow-slider");
 
-        //slider = new Rectangle(0, 121, 51, 229);
-        //slider.getStyleClass().add("snow-slider");
-
-        sliderButton = new Region();
+        sliderButton = new Button();
+        sliderButton.setLayoutY(212.5);
+        sliderButton.setLayoutX(-3);
         sliderButton.getStyleClass().add("slider-button");
 
-        sliderLines = new Group();
-        sliderLines.getStyleClass().add("slider-lines");
-
+        fallingSnow = new Region();
+        fallingSnow.getStyleClass().add("falling-snow");
+        fallingSnow.setVisible(true);
 
     }
 
@@ -168,7 +145,7 @@ public class SnowControl extends Region {
 
     private void layoutParts() {
         // ToDo: alle Parts zur drawingPane hinzufügen
-        drawingPane.getChildren().addAll(sky, snowSlider, mountains);
+        drawingPane.getChildren().addAll(fallingSnow, mountains, snowSlider, sliderButton);
 
         getChildren().add(drawingPane);
     }
@@ -183,7 +160,7 @@ public class SnowControl extends Region {
 
     private void setupBindings() {
         //ToDo dieses Binding ersetzen
-        display.textProperty().bind(valueProperty().asString(CH, "%.2f"));
+
     }
 
 
@@ -413,17 +390,5 @@ public class SnowControl extends Region {
 
     public void setValue(double value) {
         this.value.set(value);
-    }
-
-    public Color getBaseColor() {
-        return baseColor.get();
-    }
-
-    public StyleableObjectProperty<Color> baseColorProperty() {
-        return baseColor;
-    }
-
-    public void setBaseColor(Color baseColor) {
-        this.baseColor.set(baseColor);
     }
 }

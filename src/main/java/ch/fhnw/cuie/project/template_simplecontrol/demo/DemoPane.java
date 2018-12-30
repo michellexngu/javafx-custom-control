@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
@@ -17,8 +18,8 @@ class DemoPane extends BorderPane {
     private SnowControl cc;
 
     // all controls
-    private Slider      slider;
-    private ColorPicker colorPicker;
+    private TextField snowHeight;
+
 
     public DemoPane(PresentationModel pm) {
         this.pm = pm;
@@ -31,16 +32,12 @@ class DemoPane extends BorderPane {
         setPadding(new Insets(10));
 
         cc = new SnowControl();
-
-        slider = new Slider();
-        slider.setShowTickLabels(true);
-
-        colorPicker = new ColorPicker();
+        snowHeight = new TextField();
     }
 
     private void layoutControls() {
-        VBox controlPane = new VBox(new Label("SnowControl Properties"),
-                                    slider, colorPicker);
+        VBox controlPane = new VBox(new Label("Snow Height"),
+                                    snowHeight);
         controlPane.setPadding(new Insets(0, 50, 0, 50));
         controlPane.setSpacing(10);
 
@@ -49,12 +46,8 @@ class DemoPane extends BorderPane {
     }
 
     private void setupBindings() {
-        slider.valueProperty().bindBidirectional(pm.pmValueProperty());
-        colorPicker.valueProperty().bindBidirectional(pm.baseColorProperty());
-
-
         cc.valueProperty().bindBidirectional(pm.pmValueProperty());
-        cc.baseColorProperty().bindBidirectional(pm.baseColorProperty());
+
     }
 
 }

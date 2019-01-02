@@ -186,15 +186,14 @@ public class SnowControl extends Region {
     private void setupEventHandlers() {
         //ToDo: bei Bedarf ergänzen
         sliderButton.setOnMouseDragged(event -> {
-            double sliderButtonStart = 131;
             double sliderButtonHeight = 182;
             double maxSnowHeight = 300.0;
 
-            double mousePosInSliderButton = Math.min(Math.max(event.getX() - sliderButtonStart, 0), sliderButtonHeight);
+            double yPosition = snowSlider.sceneToLocal(0, event.getSceneY()).getY()-24;
 
-            double percentage = mousePosInSliderButton / (sliderButtonHeight/maxSnowHeight);
+            double percentage = 1.0 - (Math.max(0, Math.min(1.0, yPosition/sliderButtonHeight)));
 
-            setValue(maxSnowHeight-percentage);
+            setValue(percentageToValue(percentage, 0, maxSnowHeight));
         });
     }
 
@@ -202,8 +201,18 @@ public class SnowControl extends Region {
         //ToDo: bei Bedarf ergänzen
         valueProperty().addListener((observable, oldValue, newValue) -> {
             double line = valueToPercentage(newValue.doubleValue(), 0, 300);
+            System.out.println(line);
+
+            double height = (ARTBOARD_HEIGHT + 0 ) * line;
+            //snowHillGroup.setScaleY(height);
+            snowHillGroup.setLayoutY(ARTBOARD_HEIGHT - height );
+
+            System.out.println((ARTBOARD_HEIGHT - 150) * line);
 
             sliderButton.setLayoutY(182-(182*line)+131);
+
+            //snowHillGroup.setTranslateY(30);
+            //snowHillGroup.setScaleY(0.7);
 
         });
     }

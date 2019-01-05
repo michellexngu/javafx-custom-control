@@ -138,10 +138,10 @@ public class SnowControl extends Region {
         snowHillBottom.setLayoutY(282);
 
         mountains = new Region();
-        mountains.setPrefHeight(274.23);
-        mountains.setPrefWidth(437.46);
-        mountains.setLayoutX(60);
-        mountains.setLayoutY(52);;
+        mountains.setPrefHeight(298.14);
+        mountains.setPrefWidth(458.16);
+        mountains.setLayoutX(43);
+        mountains.setLayoutY(45);
         mountains.getStyleClass().add("mountains");
 
         snowSlider = new Region();

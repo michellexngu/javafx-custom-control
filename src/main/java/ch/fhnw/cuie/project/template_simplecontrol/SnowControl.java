@@ -201,19 +201,12 @@ public class SnowControl extends Region {
         //ToDo: bei Bedarf ergänzen
         valueProperty().addListener((observable, oldValue, newValue) -> {
             double line = valueToPercentage(newValue.doubleValue(), 0, 300);
-            System.out.println(line);
 
-            double height = (ARTBOARD_HEIGHT + 0 ) * line;
-            //snowHillGroup.setScaleY(height);
-            snowHillGroup.setLayoutY(ARTBOARD_HEIGHT - height );
+            double newYPos = 182 -(182 * line) +131;
 
-            System.out.println((ARTBOARD_HEIGHT - 150) * line);
+            snowHillGroup.setTranslateY(newYPos - 213);
 
-            sliderButton.setLayoutY(182-(182*line)+131);
-
-            //snowHillGroup.setTranslateY(30);
-            //snowHillGroup.setScaleY(0.7);
-
+            sliderButton.setLayoutY(newYPos);
         });
     }
 
@@ -221,11 +214,6 @@ public class SnowControl extends Region {
         //ToDo dieses Binding ersetzen
 
     }
-
-    private void performPeriodicTask() {
-        snowHillGroup.setVisible(!snowHillGroup.isVisible());
-    }
-
 
     //resize by scaling
     @Override

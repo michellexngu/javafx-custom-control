@@ -133,7 +133,7 @@ public class SnowControl extends Region {
         snowHillBottom = new Region();
         snowHillBottom.getStyleClass().add("snow-hill-bottom");
         snowHillBottom.setPrefWidth(500);
-        snowHillBottom.setPrefHeight(68);
+        snowHillBottom.setPrefHeight(158);
         snowHillBottom.setLayoutX(0);
         snowHillBottom.setLayoutY(282);
 

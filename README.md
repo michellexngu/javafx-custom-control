@@ -14,10 +14,10 @@ effiziente Eingabemöglichkeit für einen/mehrere der Werte.
  Template auf jeden Fall an. Es ist bereits recht viel Basis-Funktionlität enthalten.
 
 ## Bearbeitet von
- - Vorname, Nachname
+ - Julia Müller && Michelle Ngu
  
 ## Integriert in die OOP2-Projekte von
-- _**Ergänzen Sie hier welche OOP2-Teams Ihr Custom Control erfolgreich integriert haben.**_
+- _** Integriert bei Siv Elin Odegard und Luca Brägger.**_
 
  
 ## Präsentation

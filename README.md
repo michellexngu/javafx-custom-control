@@ -14,10 +14,12 @@ effiziente Eingabemöglichkeit für einen/mehrere der Werte.
  Template auf jeden Fall an. Es ist bereits recht viel Basis-Funktionlität enthalten.
 
 ## Bearbeitet von
- - Julia Müller && Michelle Ngu
+ - Julia Müller & Michelle Ngu
  
 ## Integriert in die OOP2-Projekte von
-- _** Integriert bei Siv Elin Odegard und Luca Brägger.**_
+- Integriert bei Siv Elin Odegard und Luca Brägger
+- Integriert bei Martin Hediger
+- Integriert bei David Schneider
 
  
 ## Präsentation

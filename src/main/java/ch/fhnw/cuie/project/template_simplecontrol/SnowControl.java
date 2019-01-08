@@ -19,6 +19,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextBoundsType;
@@ -163,6 +164,8 @@ public class SnowControl extends Region {
         drawingPane.setMaxSize(ARTBOARD_WIDTH, ARTBOARD_HEIGHT);
         drawingPane.setMinSize(ARTBOARD_WIDTH, ARTBOARD_HEIGHT);
         drawingPane.setPrefSize(ARTBOARD_WIDTH, ARTBOARD_HEIGHT);
+
+        drawingPane.setClip(new Rectangle(ARTBOARD_WIDTH, ARTBOARD_HEIGHT));
     }
 
     private void layoutParts() {

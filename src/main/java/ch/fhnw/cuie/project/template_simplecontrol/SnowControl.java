@@ -24,8 +24,8 @@ import javafx.scene.text.TextAlignment;
 import javafx.scene.text.TextBoundsType;
 
 /**
- * Unseres Snow Control zeigt die aktuelle Schneehöhe des ausgewählten Skigebiets an. Man kann die Schnenhöhe beliebig
- * mit dem Eingabefeld oder dem Slider im Control ändern und neu setzten.
+ * Unseres Snow-Control zeigt die aktuelle Schneehöhe des ausgewählten Skigebiets an. Man kann die Schnenhöhe beliebig
+ * mit dem Eingabefeld oder dem Slider im Control ändern und neu setzen.
  *
  * @author
  * Julia Müller
@@ -41,19 +41,16 @@ public class SnowControl extends Region {
         return FACTORY.getCssMetaData();
     }
 
-    private static final Locale CH = new Locale("de", "CH");
-
     private static final double ARTBOARD_WIDTH  = 500;
     private static final double ARTBOARD_HEIGHT = 350;
 
     private static final double ASPECT_RATIO = ARTBOARD_WIDTH / ARTBOARD_HEIGHT;
 
-    private static final double MINIMUM_WIDTH  = 25;    // Todo: Anpassen
+    private static final double MINIMUM_WIDTH  = 25;
     private static final double MINIMUM_HEIGHT = MINIMUM_WIDTH / ASPECT_RATIO;
 
-    private static final double MAXIMUM_WIDTH = 800;    // Todo: Anpassen
+    private static final double MAXIMUM_WIDTH = 800;
 
-    // Todo: diese Parts durch alle notwendigen Parts der gewünschten CustomControl ersetzen
     private Region mountains;
     private Region snowSlider;
     private Button sliderButton;
@@ -66,12 +63,7 @@ public class SnowControl extends Region {
     private Region snowHillBottom;
 
 
-    // Todo: ersetzen durch alle notwendigen Properties der CustomControl
     private final DoubleProperty value = new SimpleDoubleProperty();
-
-
-    // Todo: ergänzen mit allen  CSS stylable properties
-
 
     // needed for resizing
     private Pane drawingPane;
@@ -100,8 +92,6 @@ public class SnowControl extends Region {
     }
 
     private void initializeParts() {
-        //ToDo: alle deklarierten Parts initialisieren
-
         snowHillRight = new Region();
         snowHillRight.getStyleClass().add("snow-hill-right");
         snowHillRight.setPrefWidth(323.4);
@@ -176,7 +166,6 @@ public class SnowControl extends Region {
     }
 
     private void layoutParts() {
-        // ToDo: alle Parts zur drawingPane hinzufügen
         snowHillGroup.getChildren().addAll(snowHillRight, snowShadowRight, snowHillLeft, snowShadowLeft, snowHillBottom);
         drawingPane.getChildren().addAll(fallingSnow, mountains, snowHillGroup, snowSlider, sliderButton);
 
@@ -184,7 +173,6 @@ public class SnowControl extends Region {
     }
 
     private void setupEventHandlers() {
-        //ToDo: bei Bedarf ergänzen
         sliderButton.setOnMouseDragged(event -> {
             double sliderButtonHeight = 182;
             double maxSnowHeight = 300.0;
@@ -198,7 +186,6 @@ public class SnowControl extends Region {
     }
 
     private void setupValueChangeListeners() {
-        //ToDo: bei Bedarf ergänzen
         valueProperty().addListener((observable, oldValue, newValue) -> {
             double line = valueToPercentage(newValue.doubleValue(), 0, 300);
 
@@ -211,8 +198,6 @@ public class SnowControl extends Region {
     }
 
     private void setupBindings() {
-        //ToDo dieses Binding ersetzen
-
     }
 
     //resize by scaling
@@ -258,8 +243,6 @@ public class SnowControl extends Region {
     }
 
     // some handy functions
-
-    //ToDo: diese Funktionen anschauen und für die Umsetzung des CustomControls benutzen
 
     private double percentageToValue(double percentage, double minValue, double maxValue){
         return ((maxValue - minValue) * percentage) + minValue;

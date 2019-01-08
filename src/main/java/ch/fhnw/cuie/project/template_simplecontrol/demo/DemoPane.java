@@ -48,7 +48,6 @@ class DemoPane extends BorderPane {
     }
 
     private void setupBindings() {
-        //snowControl.valueProperty().bindBidirectional(pm.pmValueProperty());
         snowHeight.textProperty().bindBidirectional(pm.snowValueProperty(), new NumberStringConverter());
         snowControl.valueProperty().bindBidirectional(pm.snowValueProperty());
     }

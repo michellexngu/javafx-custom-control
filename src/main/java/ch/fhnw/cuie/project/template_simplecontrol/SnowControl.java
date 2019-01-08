@@ -413,7 +413,6 @@ public class SnowControl extends Region {
 
     // alle getter und setter  (generiert via "Code -> Generate... -> Getter and Setter)
 
-    // ToDo: ersetzen durch die Getter und Setter Ihres CustomControls
     public double getValue() {
         return value.get();
     }

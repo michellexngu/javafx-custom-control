@@ -17,9 +17,9 @@ effiziente Eingabemöglichkeit für einen/mehrere der Werte.
  - Julia Müller & Michelle Ngu
  
 ## Integriert in die OOP2-Projekte von
-- Integriert bei Siv Elin Odegard und Luca Brägger
-- Integriert bei Martin Hediger
-- Integriert bei David Schneider
+- Siv Elin Odegard und Luca Brägger
+- Martin Hediger
+- David Schneider
 
  
 ## Präsentation
